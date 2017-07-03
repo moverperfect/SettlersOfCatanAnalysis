@@ -2,11 +2,12 @@
 
 namespace SettlersOfCatanAnalysis
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to this Analysis of Settlers of Catan");
+            Console.WriteLine("Written in C# By Jack Moorhouse advised by Eleanor Partington");
         }
     }
 }
