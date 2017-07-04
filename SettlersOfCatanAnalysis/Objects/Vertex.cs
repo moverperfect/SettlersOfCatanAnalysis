@@ -2,12 +2,12 @@
 
 namespace SettlersOfCatanAnalysis.Objects
 {
-    internal class Vertex
+    public class Vertex
     {
         /// <summary>
         /// Name of the structure build upon a vertex
         /// </summary>
-        internal enum Structure
+        public enum Structure
         {
             None,
             Settlement,
@@ -17,19 +17,19 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <summary>
         /// Integer representation of the current occupation of a vertex
         /// </summary>
-        internal Structure Plot { get; private set; }
+        public Structure Plot { get; private set; }
 
         /// <summary>
         /// Integer representation of the current colour occupying a vertex
         /// </summary>
-        internal Player.Colour Colour { get; private set; }
+        public Player.Colour Colour { get; private set; }
 
         /// <summary>
         /// Initialises a vertex
         /// </summary>
         /// <param name="plot">The structure that is built upon the vertex</param>
         /// <param name="colour">The colour of the structure that is built upon the vertex</param>
-        internal Vertex(Structure plot, Player.Colour colour)
+        public Vertex(Structure plot, Player.Colour colour)
         {
             if (!Enum.IsDefined(typeof(Player.Colour), colour))
                 throw new ArgumentOutOfRangeException(nameof(colour), "Value should be defined in the Colour enum.");
@@ -42,7 +42,7 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <summary>
         /// Initialse an empty vertex
         /// </summary>
-        internal Vertex()
+        public Vertex()
         {
             Plot = Structure.None;
             Colour = Player.Colour.None;
@@ -53,10 +53,10 @@ namespace SettlersOfCatanAnalysis.Objects
         /// </summary>
         /// <param name="colour">The colour of the player upgrading</param>
         /// <returns>True if upgrade succsessful</returns>
-        internal bool UpgradeVertex(Player.Colour colour)
+        public bool UpgradeVertex(Player.Colour colour)
         {
             // If we are at full structure and the player requesting is the correct colour
-            if (Plot == Structure.City || (colour != Player.Colour.None && colour != Colour))
+            if (Plot == Structure.City || (Colour != Player.Colour.None && colour != Colour))
                 return false;
             Colour = colour;
             switch (Plot)

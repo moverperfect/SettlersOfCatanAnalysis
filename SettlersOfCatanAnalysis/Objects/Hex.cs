@@ -7,12 +7,12 @@ namespace SettlersOfCatanAnalysis.Objects
     /// <summary>
     /// Defines a hex that is on the board
     /// </summary>
-    internal class Hex
+    public class Hex
     {
         /// <summary>
         /// Defines the type of terrains available to use
         /// </summary>
-        internal enum TerrainType
+        public enum TerrainType
         {
             Hills,
             Pasture,
@@ -25,34 +25,34 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <summary>
         /// The terrain on the hex tile
         /// </summary>
-        internal TerrainType Terrain { get; }
+        public TerrainType Terrain { get; }
 
         /// <summary>
         /// The number allocated to this hex tile
         /// </summary>
-        internal int Number { get; }
+        public int Number { get; }
 
         /// <summary>
         /// A list of the local vertices going clockwise
         /// </summary>
-        internal List<int> LocalVertex { get; }
+        public List<int> LocalVertex { get; }
         
         /// <summary>
         /// A list of the local Edges going clockwise
         /// </summary>
-        internal List<int> LocalEdge { get; }
+        public List<int> LocalEdge { get; }
 
         /// <summary>
         /// Is a robber on the hex
         /// </summary>
-        internal bool IsRobber { get; set; }
+        public bool IsRobber { get; set; }
 
         /// <summary>
         /// Initialise a hex tile
         /// </summary>
         /// <param name="terrain">Terrain of the hex tile</param>
         /// <param name="number">The number allocated to the hex tile</param>
-        internal Hex(TerrainType terrain, int number)
+        public Hex(TerrainType terrain, int number)
         {
             //if (number < 0) throw new ArgumentOutOfRangeException(nameof(number));
             Terrain = terrain;

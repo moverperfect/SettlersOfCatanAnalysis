@@ -31,9 +31,9 @@ namespace SettlersOfCatanAnalysis.Objects
     ///     .         \       \5/  8  \5/  9  \5/       /
     ///     .          \_______1_______2_______3_______/
     /// </summary>
-    internal class Board
+    public class Board
     {
-        internal Board(bool random)
+        public Board(bool random)
         {
             // Initialise the board with empty hexes
             Island = new List<Hex>();
@@ -189,16 +189,16 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <summary>
         /// Collection of Hexes that represent an island
         /// </summary>
-        internal List<Hex> Island { get; }
+        public List<Hex> Island { get; }
 
         /// <summary>
         /// Collection of Vertices at the intersections of hexes
         /// </summary>
-        internal List<Vertex> IslandVertices { get; }
+        public List<Vertex> IslandVertices { get; }
 
         /// <summary>
         /// Collection of Edges that make up the island
         /// </summary>
-        internal List<Edge> IslandEdges { get; }
+        public List<Edge> IslandEdges { get; }
     }
 }

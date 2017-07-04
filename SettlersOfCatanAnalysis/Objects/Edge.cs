@@ -1,6 +1,6 @@
 ﻿namespace SettlersOfCatanAnalysis.Objects
 {
-    internal class Edge
+    public class Edge
     {
         internal bool IsRoad { get; set; }
 
