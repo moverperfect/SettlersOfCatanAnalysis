@@ -1,0 +1,7 @@
+language: csharp
+solution: SettlersOfCatanAnalysis.sln
+mono: none
+dotnet: 1.1.2
+dist: trusty
+script:
+ - dotnet restore
