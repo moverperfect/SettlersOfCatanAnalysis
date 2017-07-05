@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SettlersOfCatanAnalysis.Objects;
 
-namespace SettlersOfCatanAnalysis.Tests
+namespace SettlersOfCatanAnalysisTests
 {
     [TestClass]
     public class VertexTest
