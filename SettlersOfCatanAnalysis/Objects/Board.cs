@@ -83,11 +83,11 @@ namespace SettlersOfCatanAnalysis.Objects
                 var alphabeticalOrder = new List<int> {5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11};
                 
                 var count = 0;
-                for (var i = 0; i < iterateOrder.Count; i++)
+                foreach (var t in iterateOrder)
                 {
-                    if (Island[iterateOrder[i]].Terrain == Hex.TerrainType.Desert)
+                    if (Island[t].Terrain == Hex.TerrainType.Desert)
                         continue;
-                    Island[iterateOrder[i]] = new Hex(Island[iterateOrder[i]].Terrain, alphabeticalOrder[count]);
+                    Island[t] = new Hex(Island[t].Terrain, alphabeticalOrder[count]);
                     count++;
                 }
             }
