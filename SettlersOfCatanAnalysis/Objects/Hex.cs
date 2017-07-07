@@ -23,6 +23,19 @@ namespace SettlersOfCatanAnalysis.Objects
         }
 
         /// <summary>
+        /// Defines the resources available. Enum index matches <see cref="TerrainType"/>
+        /// </summary>
+        public enum ResourceType
+        {
+            Brick,
+            Wool,
+            Ore,
+            Grain,
+            Lumber,
+            None
+        }
+
+        /// <summary>
         /// The terrain on the hex tile
         /// </summary>
         public TerrainType Terrain { get; }
