@@ -42,38 +42,75 @@ namespace SettlersOfCatanAnalysis.Objects
         public bool IsAi { get; }
 
         /// <summary>
+        /// Indicates the number of turns this player has played
+        /// </summary>
+        public int TurnCount { get; private set; }
+
+        /// <summary>
+        /// List of AI properties for the player
+        /// </summary>
+        public AiProperties AiProperties { get; }
+
+        /// <summary>
         /// Initialise the player
         /// </summary>
-        /// <param name="isAi">Is this player an AI</param>
         /// <param name="playerColour">The colour of the player</param>
-        public Player(bool isAi, Colour playerColour)
+        /// <param name="aiProperties">A list of properties for the AI</param>
+        public Player(Colour playerColour, AiProperties aiProperties)
         {
-            IsAi = isAi;
+            if (!Enum.IsDefined(typeof(Colour), playerColour))
+                throw new ArgumentOutOfRangeException(nameof(playerColour),
+                    "Value should be defined in the Colour enum.");
+            IsAi = true;
+            AiProperties = aiProperties ?? throw new ArgumentNullException(nameof(aiProperties));
             PlayerColour = playerColour;
+            TurnCount = 0;
         }
 
         /// <summary>
-        /// Choose a starting settlement
+        /// Initialises a normal human player
+        /// </summary>
+        /// <param name="playerColour">The colour for the new player</param>
+        public Player(Colour playerColour)
+        {
+            IsAi = false;
+            PlayerColour = playerColour;
+            TurnCount = 0;
+        }
+
+        /// <summary>
+        /// Build an initial starting settlement
         /// </summary>
         /// <param name="board">The board that the player is playing on</param>
-        public void StartSettlement(Board board)
+        /// <returns>Successful implementation of settlement</returns>
+        public bool BuildStartSettlement(Board board)
         {
-            BuySettlement(true, board);
+            return TurnCount <= 2 && BuySettlement(true, board);
         }
 
-        public void BuySettlement(Board board)
+        /// <summary>
+        /// Attempt to buy a normal settlement
+        /// </summary>
+        /// <param name="board">The board to place the settlement on</param>
+        /// <returns></returns>
+        public bool BuySettlement(Board board)
         {
-            BuySettlement(false, board);
+            return BuySettlement(false, board);
         }
 
-        private void BuySettlement(bool startSettlement, Board board)
+        private bool BuySettlement(bool startSettlement, Board board)
         {
             // TODO Detect if we have enough resources to create a settlement
             //if()
 
             if (IsAi)
             {
-
+                // TODO Code the Artifical inteligence for creating a starting settlement
+                // Strategies:
+                // Random Choice
+                // Weighted for numbers that have a higher chance of being rolled
+                // Weighted for specific resources
+                // 
             }
             else
             {
@@ -86,11 +123,13 @@ namespace SettlersOfCatanAnalysis.Objects
                     tempVertex = Console.ReadLine();
                 }
 
+                // TODO Code creating a settlement with user participation
                 if (startSettlement)
                 {
                     //board.IslandVertices[result].Plot = Vertex.Structure.Settlement;
                 }
             }
+            return false;
         }
     }
 }

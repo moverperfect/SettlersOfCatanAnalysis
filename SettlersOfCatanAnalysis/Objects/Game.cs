@@ -25,7 +25,7 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <param name="randomBoard">Is the board in this game random</param>
         internal Game(bool randomBoard)
         {
-            Players = new List<Player> {new Player(false, Player.Colour.Blue), new Player(false, Player.Colour.Orange)};
+            Players = new List<Player> {new Player(Player.Colour.Blue), new Player(Player.Colour.Orange)};
             _randomBoard = randomBoard;
             InitiateBoard(_randomBoard);
         }
@@ -45,7 +45,7 @@ namespace SettlersOfCatanAnalysis.Objects
             // Place initial settlements
             for (var i = 0; i < Players.Count; i++)
             {
-                Players[i].StartSettlement(Board);
+                Players[i].BuildStartSettlement(Board);
             }
 
             // While we are still going
