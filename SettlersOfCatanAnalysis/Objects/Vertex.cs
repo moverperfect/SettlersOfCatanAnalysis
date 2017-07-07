@@ -55,6 +55,8 @@ namespace SettlersOfCatanAnalysis.Objects
         /// <returns>True if upgrade succsessful</returns>
         public bool UpgradeVertex(Player.Colour colour)
         {
+            if (!Enum.IsDefined(typeof(Player.Colour), colour))
+                throw new ArgumentOutOfRangeException(nameof(colour), "Value should be defined in the Colour enum.");
             // If we are at full structure and the player requesting is the correct colour
             if (Plot == Structure.City || (Colour != Player.Colour.None && colour != Colour))
                 return false;
