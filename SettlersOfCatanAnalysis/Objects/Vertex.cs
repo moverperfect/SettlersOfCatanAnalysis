@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SettlersOfCatanAnalysis.Objects
 {
@@ -23,6 +24,11 @@ namespace SettlersOfCatanAnalysis.Objects
         /// Integer representation of the current colour occupying a vertex
         /// </summary>
         public Player.Colour Colour { get; private set; }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        public List<int> LocalHexes { get; } = new List<int> {-1, -1, -1, -1, -1, -1};
 
         /// <summary>
         /// Initialises a vertex
