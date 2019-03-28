@@ -6,6 +6,9 @@ namespace SettlersOfCatanAnalysisTests
     [TestClass]
     public class VertexTest
     {
+        /// <summary>
+        /// Tests upgrading a vertex plot from None to Settlement
+        /// </summary>
         [TestMethod]
         public void VertexUpgrade1_1()
         {
@@ -19,6 +22,9 @@ namespace SettlersOfCatanAnalysisTests
             Assert.AreEqual(Vertex.Structure.Settlement, plot, "Structure is incorrect");
         }
 
+        /// <summary>
+        /// Tests upgrading a vertex plot from Settlement to City
+        /// </summary>
         [TestMethod]
         public void VertexUpgrade1_2()
         {
@@ -32,6 +38,9 @@ namespace SettlersOfCatanAnalysisTests
             Assert.AreEqual(Vertex.Structure.City, plot, "Structure is incorrect");
         }
 
+        /// <summary>
+        /// Tests trying to upgrade a fully upgraded vertex plot
+        /// </summary>
         [TestMethod]
         public void VertexUpgrade1_3()
         {
@@ -45,6 +54,9 @@ namespace SettlersOfCatanAnalysisTests
             Assert.AreEqual(Vertex.Structure.City, plot, "Structure is incorrect");
         }
 
+        /// <summary>
+        /// Tests trying to upgrade a plot from the incorrect player colour
+        /// </summary>
         [TestMethod]
         public void VertexUpgrade1_4()
         {
