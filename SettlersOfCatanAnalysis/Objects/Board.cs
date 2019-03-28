@@ -33,6 +33,54 @@ namespace SettlersOfCatanAnalysis.Objects
     /// </summary>
     public class Board
     {
+        /// <summary>
+        /// List of vertices that are harbours
+        /// </summary>
+        public static List<int> HarbourVertices { get; } = new List<int>
+        {
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            15,
+            21,
+            26,
+            27,
+            32,
+            33,
+            37,
+            38,
+            42,
+            43,
+            46,
+            47,
+            50,
+            51,
+            52,
+            53
+        };
+
+        /// <summary>
+        /// Collection of Hexes that represent an island
+        /// </summary>
+        public List<Hex> Island { get; }
+
+        /// <summary>
+        /// Collection of Vertices at the intersections of hexes
+        /// </summary>
+        public List<Vertex> IslandVertices { get; }
+
+        /// <summary>
+        /// Collection of Edges that make up the island
+        /// </summary>
+        public List<Edge> IslandEdges { get; }
+
         public Board(bool random)
         {
             // Initialise the board with empty hexes
@@ -178,6 +226,17 @@ namespace SettlersOfCatanAnalysis.Objects
                 IslandVertices.Add(new Vertex());
             }
 
+            for (int i = 0; i < Island.Count; i++)
+            {
+                for (int j = 0; j < Island[i].LocalVertex.Count; j++)
+                {
+                    var temp = j;
+                    if (j < 3)
+                        temp += 6;
+                    IslandVertices[Island[i].LocalVertex[j]].LocalHexes[temp - 3] = i;
+                }
+            }
+
             // Initialise collection of empty edges
             IslandEdges = new List<Edge>();
             for (var i = 0; i < 72; i++)
@@ -187,18 +246,27 @@ namespace SettlersOfCatanAnalysis.Objects
         }
 
         /// <summary>
-        /// Collection of Hexes that represent an island
+        /// Returns a list of vertices that settlements can be built upon
         /// </summary>
-        public List<Hex> Island { get; }
+        /// <param name="harbour">Should harbour vertices be returned</param>
+        /// <returns>A list of vertices that settlements can be build upon</returns>
+        public List<int> GetAvailableVertices(bool harbour)
+        {
+            var availVertices = new List<int>();
 
-        /// <summary>
-        /// Collection of Vertices at the intersections of hexes
-        /// </summary>
-        public List<Vertex> IslandVertices { get; }
+            for (var i = 0; i < IslandVertices.Count; i++)
+            {
+                if (IslandVertices[i].Plot != Vertex.Structure.None ||
+                    IslandVertices[i].Colour != Player.Colour.None) continue;
 
-        /// <summary>
-        /// Collection of Edges that make up the island
-        /// </summary>
-        public List<Edge> IslandEdges { get; }
+                var i1 = i;
+                if (harbour || !HarbourVertices.Exists(t => t == i1))
+                {
+                    availVertices.Add(i1);
+                }
+            }
+
+            return availVertices;
+        }
     }
 }
