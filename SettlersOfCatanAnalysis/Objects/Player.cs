@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SettlersOfCatanAnalysis.Objects
 {
@@ -110,7 +111,20 @@ namespace SettlersOfCatanAnalysis.Objects
                 // Random Choice
                 // Weighted for numbers that have a higher chance of being rolled
                 // Weighted for specific resources
-                // 
+                var availableVertices = board.GetAvailableVertices(false);
+                var sumVertexPoints = new List<double>();
+                var sumHexPoints = new List<double>();
+                var sumPointsPoints = new List<double>();
+
+                foreach (var vertex in availableVertices)
+                {
+                    for (int i = 0; i < board.IslandVertices[vertex].LocalHexes.Count; i++)
+                    {
+                        if (board.IslandVertices[vertex].LocalHexes[i] == -1)
+                            continue;
+                        //sumHexPoints[vertex]
+                    }
+                }
             }
             else
             {
