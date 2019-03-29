@@ -1,11 +1,25 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SettlersOfCatanAnalysis.Objects;
+using System;
 
 namespace SettlersOfCatanAnalysisTests
 {
     [TestClass]
     public class VertexTest
     {
+        /// <summary>
+        /// Testing out of range exceptions for vertex creation
+        /// </summary>
+        [TestMethod]
+        public void Vertex1_1()
+        {
+            var colour = (Player.Colour)(-1);
+            var structure = (Vertex.Structure)(-1);
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Vertex(Vertex.Structure.None, colour));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Vertex(structure, Player.Colour.None));
+        }
+
         /// <summary>
         /// Tests upgrading a vertex plot from None to Settlement
         /// </summary>
@@ -68,6 +82,18 @@ namespace SettlersOfCatanAnalysisTests
             Assert.AreEqual(false, result, "Function returned incorrect result");
             Assert.AreEqual(Player.Colour.Red, colour, "Colour is incorrect");
             Assert.AreEqual(Vertex.Structure.Settlement, plot, "Structure is incorrect");
+        }
+
+        /// <summary>
+        /// Tests upgrading a vertex with a invalid colour
+        /// </summary>
+        [TestMethod]
+        public void VertexUpgrade1_5()
+        {
+            var vertex = new Vertex(0, Player.Colour.None);
+            var playerColour = (Player.Colour)(-1);
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => vertex.UpgradeVertex(playerColour));
         }
     }
 }
