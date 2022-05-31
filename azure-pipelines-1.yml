@@ -1,0 +1,29 @@
+name: $(BuildDefinitionName)_$(date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: terraform_plan
+    jobs:
+      - job: terraform_plan
+        steps:
+        - script: echo Hello, world!
+          displayName: 'Run a one-line script'
+  - stage: terraform_apply
+    dependsOn: [terraform_plan]
+    condition: succeeded('terraform_plan')
+    jobs:
+      - deployment: terraform_apply
+        continueOnError: false
+        environment: 'Testing'
+        strategy:
+         runOnce:
+           deploy:
+             steps:
+               - script: echo Hello, world!
+                 displayName: 'Apply terraform'
